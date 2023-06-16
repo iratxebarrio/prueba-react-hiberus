@@ -1,19 +1,30 @@
+import { registerService } from "../services/register-service";
 import "../App.css";
-import { loginService } from "../services/login-service";
 
-const Login = () => {
+const Register = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    loginService({ body: formJson });
+    console.log(formJson);
+    registerService({ body: formJson });
   }
-
   return (
-    <div className="login_container">
-      <h3>Login</h3>
+    <div className="register_container">
       <form method="post" onSubmit={handleSubmit}>
+        <h3>Register</h3>
+        <fieldset>
+          <input type="text" name="name" required="true" placeholder="nombre" />
+        </fieldset>
+        <fieldset>
+          <input
+            type="text"
+            name="surname"
+            required="true"
+            placeholder="apellidos"
+          />
+        </fieldset>
         <fieldset>
           <input
             type="email"
@@ -30,12 +41,12 @@ const Login = () => {
             placeholder="password"
           />
         </fieldset>
-        <fieldset className="user-submit">
-          <button type="submit">Enviar</button>
+        <fieldset>
+            <button type="submit">Registrarse</button>
         </fieldset>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;
