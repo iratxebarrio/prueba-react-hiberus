@@ -1,0 +1,23 @@
+{
+  "name": "prueba-react-hiberus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IRATXEBARRIO92/prueba-react-hiberus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IRATXEBARRIO92/prueba-react-hiberus/issues"
+  },
+  "homepage": "https://github.com/IRATXEBARRIO92/prueba-react-hiberus#readme",
+  "dependencies": {
+    "react-router-dom": "^6.13.0"
+  }
+}
