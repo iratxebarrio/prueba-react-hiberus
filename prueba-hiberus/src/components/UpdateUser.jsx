@@ -1,18 +1,19 @@
-import { registerService } from "../services/register-service";
-import "../App.css";
+import { updateService } from "../services/update-service";
 
-const Register = () => {
+const UpdateUser = ({}) => {
+  const id = localStorage.getItem("id");
+  console.log(id, "ID UPDATEUSER");
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    registerService({ body: formJson });
+    updateService({ body: { ...formJson, ...{ id } } }); //meto en el objeto body el formJson y el id
   }
   return (
     <div className="register_container">
-      <form method="post" onSubmit={handleSubmit}>
-        <h3>Register</h3>
+      <form onSubmit={handleSubmit}>
+        <h3>Modificar datos</h3>
         <fieldset>
           <input type="text" name="name" required="true" placeholder="nombre" />
         </fieldset>
@@ -32,20 +33,13 @@ const Register = () => {
             placeholder="email"
           />
         </fieldset>
+
         <fieldset>
-          <input
-            type="password"
-            name="password"
-            required="true"
-            placeholder="password"
-          />
-        </fieldset>
-        <fieldset>
-            <button type="submit">Registrarse</button>
+          <button type="submit">Registrarse</button>
         </fieldset>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default UpdateUser;

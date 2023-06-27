@@ -12,6 +12,5 @@ export const loginService = ({ body }) => {
     .then((response) => response.json())
     .then((data) => {
       localStorage.setItem("token", JSON.stringify(data));
-      console.log(data);
     });
 };
