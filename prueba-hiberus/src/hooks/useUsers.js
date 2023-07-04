@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 
 const useUsers = () => {
   const [userData, setUserData] = useState([]);
-  const { getUsers, deleteUser } = useContext(UserContext);
+  const { getUsers, deleteUser, setLoading } = useContext(UserContext);
   const [userId, setUserId] = useState("");
 
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ const useUsers = () => {
   const openDeleteModal = (value) => {
     //creo aqui la funcion para usarla en el componente UserPage.jsx y desde ahi poder enviarla por props a User.jsx
     //Desde User.jsx al hacer click en el button eliminar, se llama a esta función y se setea el isOpen
-    
+
     setIsOpen(value);
   };
 
@@ -20,7 +20,10 @@ const useUsers = () => {
   };
 
   useEffect(() => {
-    getUsers();
+    setLoading(true)
+    getUsers().then(() => {
+      setLoading(false);
+    });
   }, []);
 
   return {

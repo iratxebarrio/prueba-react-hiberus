@@ -8,13 +8,16 @@ import { updateService } from "../services/update-service";
 export const UserState = ({ children }) => {
   const initialState = {
     users: [],
+    loading: false
   };
   const [state, dispatch] = useReducer(UseReducer, initialState);
+
   //state es lo que pasamos en el segundo argumento del useReducer --> initialState
 
   const getUsers = async () => {
     const data = await usersService(); //obtengo toda la información del fetch
     dispatch({ type: "GET_USERS", payload: data.items }); //esto es el action
+    return true
   };
 
   const deleteUser = async (userId) => {
@@ -25,15 +28,20 @@ export const UserState = ({ children }) => {
     //dispatch es la funcion que ejecutas para actualizar el estado: DELETE_USERS
   };
 
-  const updateUser = async (body) => {
-    console.log(body, "HOLA");
-    await updateService(body);
-    dispatch({ type: "UPDATE_USERS", payload: body });
+  const updateUser = async ({ userId, body }) => {
+  await updateService({ userId, body });
+  dispatch({ type: "UPDATE_USERS", payload: body.body });
+  setLoading(false)
+  return true
   };
+
+  const setLoading = (value) => {
+    dispatch({type: "LOADING", payload: value})
+  }
 
   return (
     <UserContext.Provider
-      value={{ users: state.users, getUsers, deleteUser, updateUser }}
+      value={{ users: state.users, getUsers, deleteUser, updateUser, loading: state.loading, setLoading }}
     >
       {children}
     </UserContext.Provider>

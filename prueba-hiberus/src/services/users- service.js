@@ -4,7 +4,6 @@ const getToken = localStorage.getItem("token");
 const tokenUser = JSON.parse(getToken);
 
 
-
 //se puede usar async - await o .then para resolver promeras
 //el fetch tiene dos promesas: 1 para pasar los datos a json; 2 en el que recibes los datos en json y los usas
 

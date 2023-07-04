@@ -7,18 +7,12 @@ import { useNavigate } from "react-router-dom";
 import UpdateUser from "./UpdateUser";
 
 const User = ({ name, surname, email, id, openDeleteModal, updateId }) => {
-  const { deleteUser, updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const getDelete = (id) => {
     openDeleteModal(true);
     updateId(id);
   };
-
-  const getUpdate = (id) => {
-    navigate("/update-users")
-    localStorage.setItem("id", id)
-  }
 
   return (
     <>
@@ -28,7 +22,7 @@ const User = ({ name, surname, email, id, openDeleteModal, updateId }) => {
       <td>
         <button
           className="tableImgButton"
-          onClick={() => getUpdate(id) }
+          onClick={() => navigate(`/update-users/${id}`)}
         >
           <img className="tableImg" src={updateIcon} alt="" />
         </button>
